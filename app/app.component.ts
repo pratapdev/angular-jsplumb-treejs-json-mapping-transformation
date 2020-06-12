@@ -38,8 +38,8 @@ export class AppComponent implements AfterViewInit {
         // ["Arrow", { width: 12, length: 12, location: 0.5 }]
       ]
     };
-    sources = ["file 1","file 2","folder 1","file 1/1","file 1/2","folder 1/1","folder 1/1/1","folder 1/1/1/1","file 1/1/1/1/1","file 1/1/1/1/2","f1","f2","f3"];
-    targets =  ["ile 1","ile 2","older 1","ile 1/1","ile 1/2","older 1/1","older 1/1/1","older 1/1/1/1","ile 1/1/1/1/1","ile 1/1/1/1/2","t1","t2","t3"];
+    sources = ["file 1","file 2","folder 1","file 1/1","file 1/2","folder 1/1","folder 1/1/1","folder 1/1/1/1","file 1/1/1/1/1","file 1/1/1/1/2","f1","f2","f3","f1-1","f2","f3","f4","f5","f6","f7","f8","f9","f10","f11","f12","f13","f14","f15","f16","f17","f18","f19","f20"];
+    targets =  ["ile 1","ile 2","older 1","ile 1/1","ile 1/2","older 1/1","older 1/1/1","older 1/1/1/1","ile 1/1/1/1/1","ile 1/1/1/1/2","t1","t2","t3","ff1","ff2","ff3","ff4","ff5","ff6","ff7","ff8","ff9","ff10","ff11","ff12","ff13","ff14","ff15","ff16","ff17","ff18","ff19","ff20"];
 
   ngAfterViewInit() {
     this.jsPlumbInstance = jsPlumb.getInstance();
