@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { jsPlumb } from 'jsplumb';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'my-app',
@@ -7,6 +8,7 @@ import { jsPlumb } from 'jsplumb';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit {
+  constructor(private modalService: NgbModal) {}
   title = 'Angular JsPlumb Integration';
   jsPlumbInstance;
   showConnectionToggle = false;
@@ -38,11 +40,12 @@ export class AppComponent implements AfterViewInit {
         // ["Arrow", { width: 12, length: 12, location: 0.5 }]
       ]
     };
-    sources = ["file 1","file 2","folder 1","file 1/1","file 1/2","folder 1/1","folder 1/1/1","folder 1/1/1/1","file 1/1/1/1/1","file 1/1/1/1/2","f1","f2","f3","f1-1","f2","f3","f4","f5","f6","f7","f8","f9","f10","f11","f12","f13","f14","f15","f16","f17","f18","f19","f20"];
-    targets =  ["ile 1","ile 2","older 1","ile 1/1","ile 1/2","older 1/1","older 1/1/1","older 1/1/1/1","ile 1/1/1/1/1","ile 1/1/1/1/2","t1","t2","t3","ff1","ff2","ff3","ff4","ff5","ff6","ff7","ff8","ff9","ff10","ff11","ff12","ff13","ff14","ff15","ff16","ff17","ff18","ff19","ff20"];
+    sources = ["file 1","file 2","folder 1","file 1/1","file 1/2","folder 1/1","folder 1/1/1","folder 1/1/1/1","file 1/1/1/1/1","file 1/1/1/1/2","f1","f2","f3","f1-1","f2","f3","f4","f5","f6","f7","f8","f9","f10","f11","f12","f13","f14","f15","f16","f17","f18","f19","f20","fl11","fl12","fl13","fl14","fl15","fl16","fl17","fl18","fl19","fl20","lfl11","lfl12","lfl13","lfl14","lfl15","lfl16","lfl17","lfl18","lfl19","lfl20"];
+    targets =  ["ile 1","ile 2","older 1","ile 1/1","ile 1/2","older 1/1","older 1/1/1","older 1/1/1/1","ile 1/1/1/1/1","ile 1/1/1/1/2","t1","t2","t3","ff1","ff2","ff3","ff4","ff5","ff6","ff7","ff8","ff9","ff10","ff11","ff12","ff13","ff14","ff15","ff16","ff17","ff18","ff19","ff20","rff11","rff12","rff13","rff14","rff15","rff16","rff17","rff18","rff19","rff20","rff11r","rff12r","rff13r","rff14r","rff15r","rff16r","rff17r","rff18r","rff19r","rff20r"];
 
   ngAfterViewInit() {
     this.jsPlumbInstance = jsPlumb.getInstance();
+    this.jsPlumbInstance.setContainer('container');
     // for(let i = 1; i<=9;i++){
     //   console.log(i+" "+ this.jsPlumbInstance.getContainer())
     //   if(this.jsPlumbInstance.getContainer() != undefined){
@@ -59,13 +62,7 @@ export class AppComponent implements AfterViewInit {
     //   this.jsPlumbInstance.addEndpoint(j.toString(),this.leftEndPointOptions);
     // }
 
-    this.sources.forEach((key)=>{
-      this.jsPlumbInstance.addEndpoint(key,this.rightEndPointOptions)
-    })
-
-   this.targets.forEach((key)=>{
-      this.jsPlumbInstance.addEndpoint(key,this.leftEndPointOptions)
-    })
+   
 
    
 
@@ -79,6 +76,14 @@ export class AppComponent implements AfterViewInit {
 //           ['Label', {label: '', location: 0.5, cssClass: 'connectingConnectorLabel'}]
 //         ],
 //       });
+
+this.sources.forEach((key)=>{
+      this.jsPlumbInstance.addEndpoint(key,this.rightEndPointOptions)
+    })
+
+   this.targets.forEach((key)=>{
+      this.jsPlumbInstance.addEndpoint(key,this.leftEndPointOptions)
+    })
 
 
 
@@ -117,6 +122,16 @@ export class AppComponent implements AfterViewInit {
     }
   }
 
+  add(){
+     this.sources.forEach((key)=>{
+      this.jsPlumbInstance.addEndpoint(key,this.rightEndPointOptions)
+    })
+
+   this.targets.forEach((key)=>{
+      this.jsPlumbInstance.addEndpoint(key,this.leftEndPointOptions)
+    })
+  }
+
   showConnectOnClick() {
     this.showConnectionToggle = ! this.showConnectionToggle;
     if ( this.showConnectionToggle) {
@@ -140,6 +155,22 @@ export class AppComponent implements AfterViewInit {
         endpointStyle:{fillStyle:'rgb(202, 44, 104)'}
       };
       this.jsPlumbInstance.connect(connectionParameter);
+  }
+  open(content) {
+    this.modalService.open(content).result.then((result) => {
+      //this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+    //  this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
   mymethod(){
