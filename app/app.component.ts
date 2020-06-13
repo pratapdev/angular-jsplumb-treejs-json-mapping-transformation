@@ -46,36 +46,7 @@ export class AppComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.jsPlumbInstance = jsPlumb.getInstance();
     this.jsPlumbInstance.setContainer('container');
-    // for(let i = 1; i<=9;i++){
-    //   console.log(i+" "+ this.jsPlumbInstance.getContainer())
-    //   if(this.jsPlumbInstance.getContainer() != undefined){
-    //      this.jsPlumbInstance.setContainer(i.toString());
-    //   }
-     
-    //   this.jsPlumbInstance.addEndpoint(i.toString(),this.rightEndPointOptions);
-    // }
-    //  for(let j = 10; j<=18;j++){
-    //   console.log(j+" "+ this.jsPlumbInstance.getContainer())
-    //   if(this.jsPlumbInstance.getContainer() != undefined){
-    //      this.jsPlumbInstance.setContainer(j.toString());
-    //   }
-    //   this.jsPlumbInstance.addEndpoint(j.toString(),this.leftEndPointOptions);
-    // }
-
-   
-
-   
-
-//  this.jsPlumbInstance.connect({
-//         connector: ['Flowchart', {stub: [212, 67], cornerRadius: 1, alwaysRespectStubs: true}],
-//         source: 'folder 1',
-//         target: 'ile 1/2',
-//         anchor: ['Right', 'Left'],
-//         paintStyle: {stroke: '#456', strokeWidth: 4},
-//         overlays: [
-//           ['Label', {label: '', location: 0.5, cssClass: 'connectingConnectorLabel'}]
-//         ],
-//       });
+ 
 
 this.sources.forEach((key)=>{
       this.jsPlumbInstance.addEndpoint(key,this.rightEndPointOptions)
@@ -173,9 +144,6 @@ this.sources.forEach((key)=>{
     }
   }
 
-  mymethod(){
-    
-  }
 
   nextSibilingId(n){
     console.log('sib',n)
